@@ -1,0 +1,1 @@
+import{j as s,c as a,W as i,C as e}from"./index-CLamB5sC.js";function r(){return s.jsxs("main",{className:"pt-24 min-h-screen",children:[s.jsx(a,{}),s.jsx("div",{className:"py-12",children:s.jsx(i,{})}),s.jsx(e,{})]})}export{r as default};

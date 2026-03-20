@@ -10,9 +10,7 @@ export function Footer() {
                     {/* Brand Col */}
                     <div className="md:col-span-2">
                         <div className="flex items-center gap-2 mb-6">
-                            <div className="w-8 h-8 rounded bg-gradient-to-br from-accent-violet to-accent-mint flex items-center justify-center">
-                                <span className="text-white font-heading font-bold text-lg">T</span>
-                            </div>
+                            <img src="/favicon.svg" alt="TechWheels Logo" className="w-8 h-8" />
                             <span className="font-heading font-bold text-xl tracking-tight text-foreground">TechWheels</span>
                         </div>
                         <p className="text-muted max-w-md text-sm leading-relaxed">

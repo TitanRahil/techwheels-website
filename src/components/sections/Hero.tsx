@@ -1,14 +1,22 @@
 import { useRef, useState } from 'react';
-import { motion, useScroll, useMotionValueEvent, useTransform } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent, useTransform, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import earthHero from '../imgs/earth_hero.png';
 import heroCube from '../imgs/hero-cube.png';
 import hero3 from '../imgs/hero_3.png';
+import { LoadingScreen } from '../ui/LoadingScreen';
 
 export function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeStep, setActiveStep] = useState(0);
+    const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+
+    const handleImageLoad = () => {
+        setLoadedImagesCount(prev => prev + 1);
+    };
+
+    const isHeroLoading = loadedImagesCount < 3;
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -35,7 +43,11 @@ export function Hero() {
     const transitionProps = { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const };
 
     return (
-        <section ref={containerRef} className="relative h-[700vh] bg-background pt-[1px] z-10 overflow-hidden" style={{ position: 'relative' }}>
+        <>
+            <AnimatePresence>
+                {isHeroLoading && <LoadingScreen />}
+            </AnimatePresence>
+            <section ref={containerRef} className="relative h-[700vh] bg-background pt-[1px] z-10 overflow-hidden" style={{ position: 'relative' }}>
             <motion.div
                 style={{ opacity: heroOpacity, pointerEvents: heroPointerEvents, willChange: 'opacity' }}
                 className="fixed inset-0 w-full h-full flex flex-col justify-start pt-30 sm:pt-20 lg:pt-0 lg:justify-center pb-4 lg:pb-0 bg-background z-20 overflow-hidden"
@@ -174,6 +186,7 @@ export function Hero() {
                                             className="w-full h-full object-contain"
                                             loading="eager"
                                             fetchPriority="high"
+                                            onLoad={handleImageLoad}
                                         />
                                     </div>
                                     
@@ -201,6 +214,7 @@ export function Hero() {
                                         className="w-full h-full object-contain animate-[spin_60s_linear_infinite] will-change-transform"
                                         loading="eager"
                                         fetchPriority="high"
+                                        onLoad={handleImageLoad}
                                     />
                                 </div>
                             </motion.div>
@@ -228,6 +242,7 @@ export function Hero() {
                                             alt="Hero Graphic 3" 
                                             className="w-full h-full object-contain"
                                             loading="eager"
+                                            onLoad={handleImageLoad}
                                         />
                                     </div>
                                     
@@ -241,5 +256,6 @@ export function Hero() {
                 </div>
             </motion.div>
         </section>
+        </>
     );
 }

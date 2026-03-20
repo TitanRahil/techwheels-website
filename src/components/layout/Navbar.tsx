@@ -24,7 +24,7 @@ export function Navbar() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#09090b]/98 border-b border-white/5 py-3' : 'bg-transparent py-5'
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#09090b]/80 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'
                 }`}
         >
             <motion.div 
@@ -35,9 +35,7 @@ export function Navbar() {
             >
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-2 group transition-opacity hover:opacity-80">
-                    <div className="w-8 h-8 rounded bg-gradient-to-br from-accent-violet to-accent-mint flex items-center justify-center">
-                        <span className="text-white font-heading font-bold text-lg">T</span>
-                    </div>
+                    <img src="/favicon.svg" alt="TechWheels Logo" className="w-8 h-8" />
                     <span className="font-heading font-bold text-xl tracking-tight text-foreground">TechWheels</span>
                 </Link>
 
