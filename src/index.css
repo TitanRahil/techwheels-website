@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply w-full;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Removed scroll-behavior: smooth to prevent iOS Safari sticky detachment bug */
+  }
+  
+  body {
+    @apply w-full bg-background text-foreground font-body antialiased;
+    overflow-x: clip;
+    position: static;
+    /* Static position and clip are best for allowing sticky children while preventing horizontal bleed. */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes drift1 {
+
+  0%,
+  100% {
+    transform: translate(-20%, -20%) scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translate(0%, 10%) scale(1.2);
+    opacity: 0.5;
+  }
+}
+
+@keyframes drift2 {
+
+  0%,
+  100% {
+    transform: translate(20%, 20%) scale(1);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: translate(-10%, -20%) scale(1.3);
+    opacity: 0.4;
+  }
+}
